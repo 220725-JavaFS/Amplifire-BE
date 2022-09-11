@@ -12,8 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 @Entity
 @Table(name = "users")
 public class User {
@@ -36,7 +34,6 @@ public class User {
 	private String lastName;
 
 	@OneToMany(mappedBy = "user")
-	@JsonManagedReference
 	private List<Book> books = new ArrayList<>();
 
 	public User() {
@@ -50,6 +47,14 @@ public class User {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.books = books;
+	}
+
+	public User(String userName, String password, String firstName, String lastName) {
+		super();
+		this.userName = userName;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
 	}
 
 	public User(int user_Id, String userName, String password, String firstName, String lastName, List<Book> books) {

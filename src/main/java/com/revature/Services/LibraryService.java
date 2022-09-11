@@ -30,9 +30,10 @@ public class LibraryService {
 	}
 
 	public User loginUser(String username, String password) {
-		Optional<User> optional = usersDAO.findByName(username);
+		Optional<User> optional = usersDAO.findByuserName(username);
 		if (optional.isPresent()) {
 			if (optional.get().getPassword().equals(password)) {
+
 				return optional.get();
 			}
 		}
