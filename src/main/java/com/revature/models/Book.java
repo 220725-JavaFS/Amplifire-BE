@@ -33,6 +33,12 @@ public class Book {
 		this.gutendex_book_id = gutendex_book_id;
 	}
 
+	public Book(int gutendex_book_id, User user) {
+		super();
+		this.gutendex_book_id = gutendex_book_id;
+		this.user = user;
+	}
+
 	public User getUser() {
 		return user;
 	}

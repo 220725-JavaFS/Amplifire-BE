@@ -54,4 +54,12 @@ public class LibraryService {
 		booksDAO.delete(book);
 	}
 
+	public User getUserByUsername(String Username) {
+		Optional<User> optional = usersDAO.findByuserName(Username);
+		if (optional.isPresent()) {
+			return optional.get();
+		}
+		return null;
+	}
+
 }
