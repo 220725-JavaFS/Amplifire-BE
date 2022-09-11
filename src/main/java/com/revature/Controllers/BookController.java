@@ -46,7 +46,8 @@ public class BookController {
 		String username = (String) session.getAttribute("username");
 		User user = libraryService.getUserByUsername(username);
 		Book book = new Book(bookID, user);
-		user.getBooks().add(book);
+		libraryService.addBook(book);
+		user = libraryService.getUserByUsername(username);
 		return ResponseEntity.status(200).body(user);
 	}
 
@@ -55,7 +56,8 @@ public class BookController {
 		String username = (String) session.getAttribute("username");
 		User user = libraryService.getUserByUsername(username);
 		Book book = new Book(bookID, user);
-		user.getBooks().remove(book);
+		libraryService.destroyBook(bookID);
+		user = libraryService.getUserByUsername(username);
 		return ResponseEntity.status(200).body(user);
 	}
 
