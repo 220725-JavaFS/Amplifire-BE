@@ -8,7 +8,7 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class Book {
@@ -18,7 +18,7 @@ public class Book {
 	private int gutendex_book_id;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JsonManagedReference
+	@JsonBackReference
 	private LibraryUser libraryUser;
 
 	public Book() {

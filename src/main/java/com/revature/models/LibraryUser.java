@@ -7,10 +7,13 @@ import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class LibraryUser {
@@ -32,7 +35,8 @@ public class LibraryUser {
 	@Column
 	private String lastName;
 
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "libraryUser")
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "libraryUser", fetch = FetchType.EAGER)
+	@JsonManagedReference
 	private List<Book> books = new ArrayList<>();
 
 	public LibraryUser() {
@@ -56,7 +60,8 @@ public class LibraryUser {
 		this.lastName = lastName;
 	}
 
-	public LibraryUser(int user_Id, String userName, String password, String firstName, String lastName, List<Book> books) {
+	public LibraryUser(int user_Id, String userName, String password, String firstName, String lastName,
+			List<Book> books) {
 		super();
 		this.user_Id = user_Id;
 		this.userName = userName;
