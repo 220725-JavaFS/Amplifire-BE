@@ -52,9 +52,10 @@ public class BookController {
 	}
 
 	@DeleteMapping()
-	public ResponseEntity<String> deleteBook(@RequestParam("bookID") int bookID, HttpSession session) {
-		libraryService.destroyBook(bookID);
-		return ResponseEntity.status(200).body("book deleted");
+	public ResponseEntity<Integer> deleteBook(@RequestParam("bookID") String bookID, HttpSession session) {
+		int bookId = Integer.valueOf(bookID);
+		libraryService.destroyBook(bookId);
+		return ResponseEntity.status(200).body(Integer.valueOf(bookID));
 	}
 
 }
