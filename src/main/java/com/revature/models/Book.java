@@ -8,6 +8,8 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class Book {
 
@@ -16,6 +18,7 @@ public class Book {
 	private int gutendex_book_id;
 
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonManagedReference
 	private LibraryUser libraryUser;
 
 	public Book() {
