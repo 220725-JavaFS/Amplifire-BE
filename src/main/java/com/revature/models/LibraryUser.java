@@ -37,7 +37,6 @@ public class LibraryUser {
 	private String lastName;
 
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "libraryUser", fetch = FetchType.EAGER)
-	@JsonManagedReference
 	private List<Book> books = new ArrayList<>();
 
 	public LibraryUser() {
@@ -112,7 +111,7 @@ public class LibraryUser {
 		this.lastName = lastName;
 	}
 
-	@JsonIgnore
+	@JsonManagedReference
 	public List<Book> getBooks() {
 		return books;
 	}

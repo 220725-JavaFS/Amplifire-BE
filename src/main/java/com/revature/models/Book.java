@@ -18,7 +18,6 @@ public class Book {
 	private int gutendex_book_id;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JsonBackReference
 	private LibraryUser libraryUser;
 
 	public Book() {
@@ -39,6 +38,7 @@ public class Book {
 		this.libraryUser = libraryUser;
 	}
 
+	@JsonBackReference
 	public LibraryUser getUser() {
 		return libraryUser;
 	}
