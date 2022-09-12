@@ -4,10 +4,10 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.revature.models.User;
+import com.revature.models.LibraryUser;
 
-public interface UserDAO extends JpaRepository<User, Integer> {
+public interface UserDAO extends JpaRepository<LibraryUser, Integer> {
 
-	Optional<User> findByuserName(String userName);
+	Optional<LibraryUser> findByuserName(String userName);
 
 }

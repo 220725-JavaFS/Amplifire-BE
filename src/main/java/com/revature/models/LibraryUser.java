@@ -13,7 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class User {
+public class LibraryUser {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,11 +35,11 @@ public class User {
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "libraryUser")
 	private List<Book> books = new ArrayList<>();
 
-	public User() {
+	public LibraryUser() {
 		super();
 	}
 
-	public User(String userName, String password, String firstName, String lastName, List<Book> books) {
+	public LibraryUser(String userName, String password, String firstName, String lastName, List<Book> books) {
 		super();
 		this.userName = userName;
 		this.password = password;
@@ -48,7 +48,7 @@ public class User {
 		this.books = books;
 	}
 
-	public User(String userName, String password, String firstName, String lastName) {
+	public LibraryUser(String userName, String password, String firstName, String lastName) {
 		super();
 		this.userName = userName;
 		this.password = password;
@@ -56,7 +56,7 @@ public class User {
 		this.lastName = lastName;
 	}
 
-	public User(int user_Id, String userName, String password, String firstName, String lastName, List<Book> books) {
+	public LibraryUser(int user_Id, String userName, String password, String firstName, String lastName, List<Book> books) {
 		super();
 		this.user_Id = user_Id;
 		this.userName = userName;
@@ -127,7 +127,7 @@ public class User {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		User other = (User) obj;
+		LibraryUser other = (LibraryUser) obj;
 		return Objects.equals(books, other.books) && Objects.equals(firstName, other.firstName)
 				&& Objects.equals(lastName, other.lastName) && Objects.equals(password, other.password)
 				&& Objects.equals(userName, other.userName) && user_Id == other.user_Id;

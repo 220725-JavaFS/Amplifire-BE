@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.Services.LibraryService;
-import com.revature.models.User;
+import com.revature.models.LibraryUser;
 
 @RestController
 @RequestMapping(value = "register")
@@ -26,7 +26,7 @@ public class RegisterController {
 	}
 
 	@PostMapping
-	public ResponseEntity<String> newUser(@RequestBody User newUser) {
+	public ResponseEntity<String> newUser(@RequestBody LibraryUser newUser) {
 		libraryService.registerUser(newUser);
 		System.out.println(newUser.toString());
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body("New User Created");

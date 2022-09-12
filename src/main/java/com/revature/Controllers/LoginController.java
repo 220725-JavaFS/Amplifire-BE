@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.Services.LibraryService;
-import com.revature.models.User;
+import com.revature.models.LibraryUser;
 
 @RestController
 @RequestMapping(value = "login")
@@ -30,7 +30,7 @@ public class LoginController {
 	@PostMapping
 	public ResponseEntity<String> loginUser(@RequestParam("userName") String userName,
 			@RequestParam("password") String password, HttpSession session) {
-		User user = libraryService.loginUser(userName, password);
+		LibraryUser user = libraryService.loginUser(userName, password);
 		if (user == null) {
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Login Unsuccesful");
 		}

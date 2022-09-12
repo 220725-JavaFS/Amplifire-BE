@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.Services.LibraryService;
 import com.revature.models.Book;
-import com.revature.models.User;
+import com.revature.models.LibraryUser;
 
 @RestController
 @RequestMapping(value = "book")
@@ -30,10 +30,10 @@ public class BookController {
 	}
 
 	@GetMapping()
-	public ResponseEntity<User> getUser(HttpSession session) {
+	public ResponseEntity<LibraryUser> getUser(HttpSession session) {
 		if (session != null) {
 			String username = (String) session.getAttribute("username");
-			User user = libraryService.getUserByUsername(username);
+			LibraryUser user = libraryService.getUserByUsername(username);
 			return ResponseEntity.status(200).body(user);
 		} else {
 			System.out.println("Please login first");
@@ -42,9 +42,9 @@ public class BookController {
 	}
 
 	@PostMapping()
-	public ResponseEntity<User> addBook(@RequestParam("bookID") int bookID, HttpSession session) {
+	public ResponseEntity<LibraryUser> addBook(@RequestParam("bookID") int bookID, HttpSession session) {
 		String username = (String) session.getAttribute("username");
-		User user = libraryService.getUserByUsername(username);
+		LibraryUser user = libraryService.getUserByUsername(username);
 		Book book = new Book(bookID, user);
 		libraryService.addBook(book);
 		user = libraryService.getUserByUsername(username);
@@ -52,9 +52,9 @@ public class BookController {
 	}
 
 	@DeleteMapping()
-	public ResponseEntity<User> deleteBook(@RequestParam("bookID") int bookID, HttpSession session) {
+	public ResponseEntity<LibraryUser> deleteBook(@RequestParam("bookID") int bookID, HttpSession session) {
 		String username = (String) session.getAttribute("username");
-		User user = libraryService.getUserByUsername(username);
+		LibraryUser user = libraryService.getUserByUsername(username);
 		Book book = new Book(bookID, user);
 		libraryService.destroyBook(bookID);
 		user = libraryService.getUserByUsername(username);

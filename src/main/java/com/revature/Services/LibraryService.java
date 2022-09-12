@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.revature.Repos.BooksDAO;
 import com.revature.Repos.UserDAO;
 import com.revature.models.Book;
-import com.revature.models.User;
+import com.revature.models.LibraryUser;
 
 @Service
 public class LibraryService {
@@ -25,12 +25,12 @@ public class LibraryService {
 
 	// addUser, findUser for login route, add book, delete book,
 
-	public void registerUser(User newUser) {
+	public void registerUser(LibraryUser newUser) {
 		usersDAO.save(newUser);
 	}
 
-	public User loginUser(String username, String password) {
-		Optional<User> optional = usersDAO.findByuserName(username);
+	public LibraryUser loginUser(String username, String password) {
+		Optional<LibraryUser> optional = usersDAO.findByuserName(username);
 		if (optional.isPresent()) {
 			if (optional.get().getPassword().equals(password)) {
 
@@ -54,8 +54,8 @@ public class LibraryService {
 		booksDAO.delete(book);
 	}
 
-	public User getUserByUsername(String Username) {
-		Optional<User> optional = usersDAO.findByuserName(Username);
+	public LibraryUser getUserByUsername(String Username) {
+		Optional<LibraryUser> optional = usersDAO.findByuserName(Username);
 		if (optional.isPresent()) {
 			return optional.get();
 		}

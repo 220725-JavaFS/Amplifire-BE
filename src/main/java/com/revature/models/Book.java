@@ -16,7 +16,7 @@ public class Book {
 	private int gutendex_book_id;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	private User libraryUser;
+	private LibraryUser libraryUser;
 
 	public Book() {
 		super();
@@ -30,17 +30,17 @@ public class Book {
 		this.gutendex_book_id = gutendex_book_id;
 	}
 
-	public Book(int gutendex_book_id, User libraryUser) {
+	public Book(int gutendex_book_id, LibraryUser libraryUser) {
 		super();
 		this.gutendex_book_id = gutendex_book_id;
 		this.libraryUser = libraryUser;
 	}
 
-	public User getUser() {
+	public LibraryUser getUser() {
 		return libraryUser;
 	}
 
-	public void setUser(User libraryUser) {
+	public void setUser(LibraryUser libraryUser) {
 		this.libraryUser = libraryUser;
 	}
 
