@@ -4,22 +4,19 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
 @Entity
-@Table(name = "books")
 public class Book {
 
 	@Id
-	@Column
+	@Column(unique = true)
 	private int gutendex_book_id;
 
-	@ManyToOne
-	@JoinColumn(name = "user_id", nullable = true)
-	private User user;
+	@ManyToOne(fetch = FetchType.LAZY)
+	private User libraryUser;
 
 	public Book() {
 		super();
@@ -33,23 +30,23 @@ public class Book {
 		this.gutendex_book_id = gutendex_book_id;
 	}
 
-	public Book(int gutendex_book_id, User user) {
+	public Book(int gutendex_book_id, User libraryUser) {
 		super();
 		this.gutendex_book_id = gutendex_book_id;
-		this.user = user;
+		this.libraryUser = libraryUser;
 	}
 
 	public User getUser() {
-		return user;
+		return libraryUser;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUser(User libraryUser) {
+		this.libraryUser = libraryUser;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(gutendex_book_id, user);
+		return Objects.hash(gutendex_book_id, libraryUser);
 	}
 
 	@Override
@@ -61,12 +58,12 @@ public class Book {
 		if (getClass() != obj.getClass())
 			return false;
 		Book other = (Book) obj;
-		return gutendex_book_id == other.gutendex_book_id && Objects.equals(user, other.user);
+		return gutendex_book_id == other.gutendex_book_id && Objects.equals(libraryUser, other.libraryUser);
 	}
 
 	@Override
 	public String toString() {
-		return "Book [gutendex_book_id=" + gutendex_book_id + ", user=" + user + "]";
+		return "Book [gutendex_book_id=" + gutendex_book_id + ", libraryUser=" + libraryUser + "]";
 	}
 
 }

@@ -4,16 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 @Entity
-@Table(name = "users")
 public class User {
 
 	@Id
@@ -21,7 +20,7 @@ public class User {
 	@Column
 	private int user_Id;
 
-	@Column
+	@Column(unique = true)
 	private String userName;
 
 	@Column
@@ -33,7 +32,7 @@ public class User {
 	@Column
 	private String lastName;
 
-	@OneToMany(mappedBy = "user")
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "libraryUser")
 	private List<Book> books = new ArrayList<>();
 
 	public User() {
