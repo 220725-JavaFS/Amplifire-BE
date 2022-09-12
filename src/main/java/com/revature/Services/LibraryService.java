@@ -46,7 +46,11 @@ public class LibraryService {
 
 	public Book getBookByID(int id) {
 		Optional<Book> optional = booksDAO.findById(id);
-		return (optional.isPresent() ? optional.get() : null);
+		if (optional.isPresent()) {
+			return optional.get();
+		} else {
+			return null;
+		}
 	}
 
 	public void destroyBook(int id) {

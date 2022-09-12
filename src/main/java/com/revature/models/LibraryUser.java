@@ -13,7 +13,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -116,7 +115,6 @@ public class LibraryUser {
 		return books;
 	}
 
-	@JsonIgnore
 	public void setBooks(List<Book> books) {
 		this.books = books;
 	}

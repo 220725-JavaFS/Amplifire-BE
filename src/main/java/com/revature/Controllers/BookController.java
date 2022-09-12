@@ -42,7 +42,7 @@ public class BookController {
 	}
 
 	@PostMapping()
-	public ResponseEntity<LibraryUser> addBook(@RequestParam("bookID") int bookID, HttpSession session) {
+	public ResponseEntity<LibraryUser> addBook(@RequestParam("bookID") String bookID, HttpSession session) {
 		String username = (String) session.getAttribute("username");
 		LibraryUser user = libraryService.getUserByUsername(username);
 		Book book = new Book(bookID, user);
@@ -52,13 +52,9 @@ public class BookController {
 	}
 
 	@DeleteMapping()
-	public ResponseEntity<LibraryUser> deleteBook(@RequestParam("bookID") int bookID, HttpSession session) {
-		String username = (String) session.getAttribute("username");
-		LibraryUser user = libraryService.getUserByUsername(username);
-		Book book = new Book(bookID, user);
+	public ResponseEntity<String> deleteBook(@RequestParam("bookID") int bookID, HttpSession session) {
 		libraryService.destroyBook(bookID);
-		user = libraryService.getUserByUsername(username);
-		return ResponseEntity.status(200).body(user);
+		return ResponseEntity.status(200).body("book deleted");
 	}
 
 }
