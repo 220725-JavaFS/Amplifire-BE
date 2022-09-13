@@ -28,6 +28,7 @@ public class LoginController {
 	}
 
 	@GetMapping
+	@CrossOrigin
 	public ResponseEntity<String> loginUser(@RequestParam("userName") String userName,
 			@RequestParam("password") String password, HttpSession session) {
 		LibraryUser user = libraryService.loginUser(userName, password);
