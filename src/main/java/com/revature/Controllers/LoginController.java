@@ -33,10 +33,10 @@ public class LoginController {
 			@RequestParam("password") String password, HttpSession session) {
 		LibraryUser user = libraryService.loginUser(userName, password);
 		if (user == null) {
-			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Login Unsuccesful");
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(session.getId());
 		}
 		session.setAttribute("username", user.getUserName());
-		return ResponseEntity.status(HttpStatus.ACCEPTED).body("Login Succesful");
+		return ResponseEntity.status(HttpStatus.ACCEPTED).body(session.getId());
 	}
 
 }
