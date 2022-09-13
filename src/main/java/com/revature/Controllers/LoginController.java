@@ -28,7 +28,7 @@ public class LoginController {
 	}
 
 	@GetMapping
-	@CrossOrigin
+	@CrossOrigin(origins = "http://localhost:4200")
 	public ResponseEntity<String> loginUser(@RequestParam("userName") String userName,
 			@RequestParam("password") String password, HttpSession session) {
 		LibraryUser user = libraryService.loginUser(userName, password);
